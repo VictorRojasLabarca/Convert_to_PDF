@@ -3,18 +3,90 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
+    <title>Convert PDF</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+      href="{{ url_for('static', filename='../static/css/bulma.min.css')}}"
     />
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='../static/js/script.js')}}"
+      defer
+    ></script>
   </head>
   <body>
-    <section class="section">
+    <main>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <!-- Navbar burger -->
+          <a
+            role="button"
+            class="navbar-burger"
+            data-target="navMenu"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <!-- Menu navbar -->
+        <div class="navbar-menu" id="navMenu">
+          <div class="navbar-end">
+            <a class="navbar-item">Home</a>
+            <a class="navbar-item">About</a>
+          </div>
+        </div>
+      </nav>
       <div class="container">
-        <h1 class="title">Hello World</h1>
-        <p class="subtitle">My first website with <strong>Bulma</strong>!</p>
+        <section class="section">
+          <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+              <h1 class="title">Convert Docx to PDF</h1>
+              <h2 class="subtitle">Drop doc here</h2>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <form method="post" action="/upload" enctype="multipart/form-data">
+              <div class="columns is-centered">
+                <div class="column is-half">
+                  <div class="card">
+                    <div class="card-content">
+                      <div class="content has-text-centered">
+                        <div id="drop_zone">
+                          <label>
+                            <img
+                              src="{{ url_for('static', filename='img/upload_file_250dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg') }}"
+                              alt="subir-documento"
+                              width="100"
+                            />
+                            <input
+                              type="file"
+                              id="input_file"
+                              accept=".docx"
+                              hidden
+                            />
+                            <p>Drag one file to this <i>drop zone</i>.</p>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="buttons has-addons is-centered">
+                        <button class="button is-white" type="submit">
+                          Convert
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
       </div>
-    </section>
+    </main>
   </body>
 </html>
